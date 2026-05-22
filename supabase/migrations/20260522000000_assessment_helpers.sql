@@ -7,13 +7,13 @@ begin
   end if;
 
   -- Truncate wheels (this cascades to wheel_participants)
-  delete from public.spin_wheels;
+  delete from public.spin_wheels where id is not null;
   
   -- Clear all transactions
-  delete from public.transactions;
+  delete from public.transactions where id is not null;
 
   -- Reset all users to 1000 coins
-  update public.profiles set coins = 1000;
+  update public.profiles set coins = 1000 where id is not null;
 end;
 $$ language plpgsql security definer;
 
